@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        let val = +prompt('Введите число');
+        let pow = +prompt('Введите степень');
+        let count = 1;
+        let result = 1;
+        
+        function power(val, pow) { 
+                result *= val;
+                if (count === pow){
+                    return result;
+                }
+                else {
+                count++;
+                power(val, pow);
+                }
+        }
+            if (pow === 0){
+                alert(result);
+            }
+            
+            else {
+            power(val, pow);
+            alert (result);
+            }
+        
+    </script>
+</body>
+</html>
