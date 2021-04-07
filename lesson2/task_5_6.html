@@ -33,19 +33,19 @@
 
         // задание 6
         
-        function mathOperation(a, b, operation){
+        function mathOperation(arg1, arg2, operation){
             switch(operation){
                 case 'сложение': 
-                alert(sumFunc(a, b));
+                return sumFunc(arg1, arg2);
                 break;
                 case 'вычитание': 
-                alert(diffFunc(a, b));
+                return diffFunc(arg1, arg2);
                 break;
                 case 'деление': 
-                alert(divFunc(a, b));
+                return divFunc(arg1, arg2);
                 break;
                 case 'умножение': 
-                alert(multFunc(a, b));
+                return multFunc(arg1, arg2);
                 break;
             }
         }
