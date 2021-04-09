@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        // задание 5
+
+        let a = +prompt('Введите первое число');
+        let b = +prompt('Введите второе число');
+        let operation = prompt('Введите желаемую операцию: "сложение" "вычитание" "деление" "умножение"');
+        
+        function sumFunc(a,b) {
+            let sum = a + b;
+            return sum;
+        }
+        function diffFunc(a,b) {
+            let diff = a - b;
+            return diff;
+        }
+        function divFunc(a,b) {
+            let div = a / b;
+            return div;
+        }
+        function multFunc(a,b) {
+            let mult = a * b;
+            return mult;
+        }
+
+        // задание 6
+        
+        function mathOperation(arg1, arg2, operation){
+            switch(operation){
+                case 'сложение': 
+                return sumFunc(arg1, arg2);
+                break;
+                case 'вычитание': 
+                return diffFunc(arg1, arg2);
+                break;
+                case 'деление': 
+                return divFunc(arg1, arg2);
+                break;
+                case 'умножение': 
+                return multFunc(arg1, arg2);
+                break;
+            }
+        }
+        mathOperation(a, b, operation);
+
+    </script>
+</body>
+</html>

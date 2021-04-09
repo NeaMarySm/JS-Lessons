@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        let a = parseInt(prompt('Введите любое целое число'));
+        let b = parseInt(prompt('Введите любое целое число'));
+        if (isNaN(a) || isNaN(b)) alert('Вы ввели не число');
+        else if (a >= 0 && b >= 0) alert('Разность: ' + (a - b));
+        else if (a < 0 && b < 0) alert('Произведение: ' + (a * b));
+        else alert('Сумма: ' + (a + b));
+    </script>
+</body>
+</html>
