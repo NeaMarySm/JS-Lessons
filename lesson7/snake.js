@@ -95,7 +95,8 @@ const map = {
         const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
         foodCell.classList.add('food');
         this.usedCells.push(foodCell);
-
+        
+        // добавление к элементам препятствия класса
         barrierPointsArray.forEach((barrierPoint) => {
             const barrierCell = this.cells[`x${barrierPoint.x}_y${barrierPoint.y}`];
             barrierCell.classList.add('barrier');
@@ -176,11 +177,13 @@ const food = {
        return this.x === point.x && this.y === point.y;
     }
 }
+// объект препятствия
 const barrier = {
     coordinates: [],
     getBarrierCoordinates() {
         return this.coordinates;
     },
+
     setBarrierCoordinates(point){
         return this.coordinates = [
             {x: point.x - 1, y: point.y - 1},
@@ -237,7 +240,7 @@ const game = {
         
         this.map.init(this.config.getRowsCount(), this.config.getColsCount());
 
-        this.setEventHandlers(); // установка обработчиков событий
+        this.setEventHandlers(); 
         this.reset();
     },
 
@@ -246,11 +249,12 @@ const game = {
         this.snake.init(this.getStartBodyPoint(), 'up');
         this.food.setCoordinates(this.getRandomFreeCoordinates());
         this.barrier.setBarrierCoordinates(this.getBarrierRndPoint());
+        // this.barrierClone().setBarrierCoordinates(this.getBarrierRndPoint());
         this.setScore();
         this.render();
     },
 
-
+    // получение рандомной точки для генерации препятствия
     getBarrierRndPoint(){
         while(true){
             const rndBarrierPoint = this.getRandomFreeCoordinates();
@@ -260,7 +264,7 @@ const game = {
             }
         }
     },
-
+    // валидация рандомной точки препятствия из условия, чтобы препятсвие не выходило за границы поля 
     isValidBarrierPoint(point){
         if(
             point.x < this.config.getColsCount() - 1 &&
@@ -271,6 +275,12 @@ const game = {
             return true;
         }
     },
+    
+    // Как на основе имеющегося объекта barrier сделать подобные, чтобы увеличить количество препятствий?
+
+    // barrierClone(){
+    //     Object.assign(barrierClone, this.barrier);
+    // },
 
     getStartBodyPoint(){
         return [
@@ -339,6 +349,7 @@ const game = {
     isGameWon(){
         return this.snake.getBody().length > this.config.getWinFoodCount();
     },
+    // установка счета из условия, что счет всегда равен длине змейки - 1
     setScore(value = 0){
         const score = document.getElementById('score');
         score.textContent = value;
@@ -348,7 +359,7 @@ const game = {
         const nextHeadPoint = this.snake.getNextStepHeadPoint();
 
         return  !this.snake.isOnPoint(nextHeadPoint)&&
-                !this.barrier.isOnPoint(nextHeadPoint)&&
+                !this.barrier.isOnPoint(nextHeadPoint)&& // ограничение на пересечение змейкой препятствия
                 nextHeadPoint.x < this.config.getColsCount() &&
                 nextHeadPoint.y < this.config.getRowsCount() &&
                 nextHeadPoint.x >= 0 &&
